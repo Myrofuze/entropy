@@ -1,5 +1,12 @@
 {
   "files": [
-    "evolution-pollution-atmospherique.md"
+    {
+      "filename": "evolution-pollution-atmospherique.txt",
+      "title": "Évolution de la pollution atmosphérique depuis 1990",
+      "author": "Équipe de développement",
+      "date": "2026-08-30",
+      "category": "Environnement",
+      "description": "Étude de démonstration du système de publication."
+    }
   ]
 }
