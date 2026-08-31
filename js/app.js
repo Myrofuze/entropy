@@ -765,8 +765,8 @@
      ------------------------------------------------------------------ */
 
   function updateScrollTopVisibility() {
-  el.scrollTop?.setAttribute("data-visible", String(window.scrollY > 480));
-}
+    el.scrollTop.setAttribute("data-visible", String(window.scrollY > 480));
+  }
 
   el.scrollTop.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
