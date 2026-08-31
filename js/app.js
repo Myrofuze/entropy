@@ -691,59 +691,110 @@
     return slug;
   }
 
-  function buildTableOfContents() {
-    if (!el.tocDrawerNav) return;
-    const headingEls = Array.from(el.studyBody.querySelectorAll("h1, h2, h3, h4, h5, h6"));
-    const usedSlugs = new Set();
+ function buildTableOfContents() {
+  const headingEls = Array.from(
+    el.studyBody.querySelectorAll("h1, h2, h3, h4, h5, h6")
+  );
 
-    tocHeadings = headingEls.map((h) => {
-      const id = slugifyHeading(h.textContent, usedSlugs);
-      h.id = id;
-      return { id, text: h.textContent, level: Number(h.tagName[1]) };
-    });
+  const usedSlugs = new Set();
 
-    if (!tocHeadings.length) {
-      el.tocSidebar.hidden = true;
-      el.tocToggle.hidden = true;
-      el.tocSidebarNav.innerHTML = "";
-      el.tocDrawerNav.innerHTML = "";
-      return;
-    }
+  tocHeadings = headingEls.map((h) => {
+    const id = slugifyHeading(h.textContent, usedSlugs);
+    h.id = id;
 
-    // Normaliser les niveaux relatifs (le plus petit heading trouvé = niveau 1 visuellement)
-    const minLevel = Math.min(...tocHeadings.map((h) => h.level));
+    return {
+      id,
+      text: h.textContent,
+      level: Number(h.tagName[1]),
+    };
+  });
 
-    const linksHtml = tocHeadings
-      .map(
-        (h) => `<a class="toc-link" data-level="${Math.min(h.level - minLevel + 1, 4)}" data-toc-id="${h.id}" href="#${h.id}">${escapeHtml(h.text)}</a>`
-      )
-      .join("");
-
-    el.tocSidebarNav.innerHTML = linksHtml;
-    el.tocDrawerNav.innerHTML = linksHtml;
-
-    el.tocSidebar.hidden = false;
-    el.tocToggle.hidden = false;
-
-    // Navigation douce sans dépendre du hash-router (évite un conflit de route)
-    const allTocLinks = [
-      ...el.tocSidebarNav.querySelectorAll("[data-toc-id]"),
-      ...el.tocDrawerNav.querySelectorAll("[data-toc-id]"),
-    ];
-    allTocLinks.forEach((link) => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        closeTocDrawer();
-        const target = document.getElementById(link.dataset.tocId);
-        if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-    });
-
-    if (tocScrollHandler) window.removeEventListener("scroll", tocScrollHandler);
-    tocScrollHandler = throttle(updateActiveTocLink, 100);
-    window.addEventListener("scroll", tocScrollHandler, { passive: true });
-    updateActiveTocLink();
+  // Aucun titre dans l'étude
+  if (!tocHeadings.length) {
+    if (el.tocSidebar) el.tocSidebar.hidden = true;
+    if (el.tocToggle) el.tocToggle.hidden = true;
+    if (el.tocSidebarNav) el.tocSidebarNav.innerHTML = "";
+    if (el.tocDrawerNav) el.tocDrawerNav.innerHTML = "";
+    return;
   }
+
+  const minLevel = Math.min(
+    ...tocHeadings.map((h) => h.level)
+  );
+
+  const linksHtml = tocHeadings
+    .map(
+      (h) =>
+        `<a class="toc-link" data-level="${Math.min(
+          h.level - minLevel + 1,
+          4
+        )}" data-toc-id="${h.id}" href="#${h.id}">${escapeHtml(
+          h.text
+        )}</a>`
+    )
+    .join("");
+
+  // Sommaire desktop
+  if (el.tocSidebarNav) {
+    el.tocSidebarNav.innerHTML = linksHtml;
+  }
+
+  // Sommaire mobile/tablette
+  if (el.tocDrawerNav) {
+    el.tocDrawerNav.innerHTML = linksHtml;
+  }
+
+  if (el.tocSidebar) {
+    el.tocSidebar.hidden = false;
+  }
+
+  if (el.tocToggle) {
+    el.tocToggle.hidden = !el.tocDrawerNav;
+  }
+
+  // Récupérer tous les liens réellement présents
+  const allTocLinks = [
+    ...(el.tocSidebarNav
+      ? el.tocSidebarNav.querySelectorAll("[data-toc-id]")
+      : []),
+    ...(el.tocDrawerNav
+      ? el.tocDrawerNav.querySelectorAll("[data-toc-id]")
+      : []),
+  ];
+
+  allTocLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      closeTocDrawer();
+
+      const target = document.getElementById(
+        link.dataset.tocId
+      );
+
+      if (target) {
+        target.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    });
+  });
+
+  if (tocScrollHandler) {
+    window.removeEventListener("scroll", tocScrollHandler);
+  }
+
+  tocScrollHandler = throttle(updateActiveTocLink, 100);
+
+  window.addEventListener(
+    "scroll",
+    tocScrollHandler,
+    { passive: true }
+  );
+
+  updateActiveTocLink();
+}
 
   function updateActiveTocLink() {
     if (!tocHeadings.length) return;
@@ -770,11 +821,6 @@
     if (el.tocToggle) el.tocToggle.setAttribute("aria-expanded", "true");
   }
 
-  function updateScrollTopVisibility() {
-  el.scrollTop?.setAttribute(
-    "data-visible",
-    String(window.scrollY > 480)
-  );
 }
 
   if (el.tocToggle) {
@@ -818,8 +864,13 @@
      ------------------------------------------------------------------ */
 
   function updateScrollTopVisibility() {
-    el.scrollTop.setAttribute("data-visible", String(window.scrollY > 480));
-  }
+  if (!el.scrollTop) return;
+
+  el.scrollTop.setAttribute(
+    "data-visible",
+    String(window.scrollY > 480)
+  );
+}
 
   el.scrollTop.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
