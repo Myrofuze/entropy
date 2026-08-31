@@ -821,7 +821,6 @@
     if (el.tocToggle) el.tocToggle.setAttribute("aria-expanded", "true");
   }
 
-}
 
   if (el.tocToggle) {
   el.tocToggle.addEventListener("click", () => {
