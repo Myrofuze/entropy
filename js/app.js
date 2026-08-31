@@ -271,7 +271,17 @@
     const withMath = restoreMathPlaceholders(rawHtml, store);
     return withMath;
   }
-
+   function closeTocDrawer() {
+  if (!el.tocDrawer) return;
+  el.tocDrawer.setAttribute("data-open", "false");
+  el.tocDrawer.setAttribute("aria-hidden", "true");
+  if (el.tocDrawerOverlay) {
+    el.tocDrawerOverlay.setAttribute("data-open", "false");
+  }
+  if (el.tocToggle) {
+    el.tocToggle.setAttribute("aria-expanded", "false");
+  }
+}
   /* ------------------------------------------------------------------
      5. SANITISATION
      ------------------------------------------------------------------ */
@@ -682,6 +692,7 @@
   }
 
   function buildTableOfContents() {
+    if (!el.tocDrawerNav) return;
     const headingEls = Array.from(el.studyBody.querySelectorAll("h1, h2, h3, h4, h5, h6"));
     const usedSlugs = new Set();
 
