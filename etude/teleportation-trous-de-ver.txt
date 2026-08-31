@@ -24,6 +24,8 @@ Intéressons-nous d'abord à une approche théorique permettant de relier deux r
 
 Un premier moyen, qui ne serait envisageable que dans l'espace, serait d'utiliser un trou de ver.
 
+![Un trou de vers](image/trou-de-vers.png)
+
 Les trous de ver ont été théorisés dans le cadre de la relativité générale, notamment avec les travaux d'Albert Einstein et Nathan Rosen en 1935. La solution correspondante est aujourd'hui appelée **pont d'Einstein-Rosen**.
 
 L'idée générale est de déformer la géométrie de l'espace-temps afin de créer un raccourci entre deux régions normalement très éloignées.
@@ -115,6 +117,7 @@ Les régions entourant un trou de ver pourraient également présenter des effet
 
 Selon la relativité générale, un champ gravitationnel intense modifie l'écoulement du temps.
 
+![Un trou de vers](image/relativity-space-gravity.png)
 Ce phénomène est appelé **dilatation gravitationnelle du temps**.
 
 Un observateur situé dans un champ gravitationnel plus intense pourrait mesurer un écoulement du temps différent de celui d'un observateur situé plus loin.
