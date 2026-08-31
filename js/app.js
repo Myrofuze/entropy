@@ -747,35 +747,44 @@
     });
   }
 
-  /* ------------------------------------------------------------------
+/* ------------------------------------------------------------------
      9c-bis. SOMMAIRE — panneau (drawer) mobile/tablette
      ------------------------------------------------------------------ */
 
   function openTocDrawer() {
+    if (!el.tocDrawer) return;
     el.tocDrawer.setAttribute("data-open", "true");
     el.tocDrawer.setAttribute("aria-hidden", "false");
-    el.tocDrawerOverlay.setAttribute("data-open", "true");
-    el.tocToggle.setAttribute("aria-expanded", "true");
+    if (el.tocDrawerOverlay) el.tocDrawerOverlay.setAttribute("data-open", "true");
+    if (el.tocToggle) el.tocToggle.setAttribute("aria-expanded", "true");
   }
 
   function closeTocDrawer() {
+    if (!el.tocDrawer) return;
     el.tocDrawer.setAttribute("data-open", "false");
     el.tocDrawer.setAttribute("aria-hidden", "true");
-    el.tocDrawerOverlay.setAttribute("data-open", "false");
-    el.tocToggle.setAttribute("aria-expanded", "false");
+    if (el.tocDrawerOverlay) el.tocDrawerOverlay.setAttribute("data-open", "false");
+    if (el.tocToggle) el.tocToggle.setAttribute("aria-expanded", "false");
   }
 
-  el.tocToggle.addEventListener("click", () => {
-    const open = el.tocDrawer.getAttribute("data-open") === "true";
-    if (open) closeTocDrawer();
-    else openTocDrawer();
-  });
+  if (el.tocToggle) {
+    el.tocToggle.addEventListener("click", () => {
+      const open = el.tocDrawer.getAttribute("data-open") === "true";
+      if (open) closeTocDrawer();
+      else openTocDrawer();
+    });
+  }
 
-  el.tocDrawerClose.addEventListener("click", closeTocDrawer);
-  el.tocDrawerOverlay.addEventListener("click", closeTocDrawer);
+  if (el.tocDrawerClose) {
+    el.tocDrawerClose.addEventListener("click", closeTocDrawer);
+  }
+  
+  if (el.tocDrawerOverlay) {
+    el.tocDrawerOverlay.addEventListener("click", closeTocDrawer);
+  }
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && el.tocDrawer.getAttribute("data-open") === "true") {
+    if (e.key === "Escape" && el.tocDrawer && el.tocDrawer.getAttribute("data-open") === "true") {
       closeTocDrawer();
     }
   });
@@ -1069,7 +1078,7 @@
       exitReadingMode();
       el.readProgressBar.style.width = "0%";
       closeTocDrawer();
-      el.tocToggle.hidden = true;
+      if (el.tocToggle) el.tocToggle.hidden = true;
     }
 
     // Le logo devient un lien "Retour aux études" sur la page étude
