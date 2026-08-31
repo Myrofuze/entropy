@@ -1353,3 +1353,11 @@ body[data-reading-mode="true"] .study-header h1 {
   .btn { flex: 1; justify-content: center; }
   .study-header__actions { flex-direction: column; }
 }
+@media (max-width: 1024px) {
+  .toc-sidebar,
+  .toc-drawer,
+  .toc-drawer-overlay,
+  #toc-toggle {
+    display: none !important;
+  }
+}
