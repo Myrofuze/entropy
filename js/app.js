@@ -824,12 +824,19 @@
 }
 
   if (el.tocToggle) {
-    el.tocToggle.addEventListener("click", () => {
-      const open = el.tocDrawer.getAttribute("data-open") === "true";
-      if (open) closeTocDrawer();
-      else openTocDrawer();
-    });
-  }
+  el.tocToggle.addEventListener("click", () => {
+    if (!el.tocDrawer) return;
+
+    const open =
+      el.tocDrawer.getAttribute("data-open") === "true";
+
+    if (open) {
+      closeTocDrawer();
+    } else {
+      openTocDrawer();
+    }
+  });
+}
 
   if (el.tocDrawerClose) {
     el.tocDrawerClose.addEventListener("click", closeTocDrawer);
