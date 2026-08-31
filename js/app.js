@@ -404,10 +404,6 @@
     tocMobile: document.getElementById("toc-mobile"),
     readingModeToggle: document.getElementById("reading-mode-toggle"),
     readingModeExit: document.getElementById("reading-mode-exit"),
-    brandLink: document.getElementById("brand-link"),
-    brandBackIcon: document.querySelector(".brand__back-icon"),
-    brandMark: document.getElementById("brand-mark"),
-    brandTagline: document.getElementById("brand-tagline"),
   };
 
   let uiState = { query: "", category: "" };
@@ -1039,14 +1035,6 @@
       exitReadingMode();
       el.readProgressBar.style.width = "0%";
     }
-
-    // Le logo devient un lien "Retour aux études" sur la page étude
-    const isStudy = name === "study";
-    el.brandBackIcon.hidden = !isStudy;
-    el.brandMark.textContent = isStudy ? "Retour aux études" : "Publication";
-    el.brandTagline.hidden = isStudy;
-    el.brandLink.setAttribute("aria-label", isStudy ? "Retour à la liste des études" : "Accueil");
-
     const active = name === "list" ? el.viewList : name === "study" ? el.viewStudy : el.viewNotFound;
     active.classList.remove("fade-in");
     // force reflow pour rejouer l'animation
