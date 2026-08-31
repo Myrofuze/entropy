@@ -759,13 +759,12 @@
     if (el.tocToggle) el.tocToggle.setAttribute("aria-expanded", "true");
   }
 
-  function closeTocDrawer() {
-    if (!el.tocDrawer) return;
-    el.tocDrawer.setAttribute("data-open", "false");
-    el.tocDrawer.setAttribute("aria-hidden", "true");
-    if (el.tocDrawerOverlay) el.tocDrawerOverlay.setAttribute("data-open", "false");
-    if (el.tocToggle) el.tocToggle.setAttribute("aria-expanded", "false");
-  }
+  function updateScrollTopVisibility() {
+  el.scrollTop?.setAttribute(
+    "data-visible",
+    String(window.scrollY > 480)
+  );
+}
 
   if (el.tocToggle) {
     el.tocToggle.addEventListener("click", () => {
