@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Publication — Bibliothèque d'études</title>
+<title>Entropy — Bibliothèque d'études</title>
 <meta name="description" content="Bibliothèque numérique des études publiées par l'organisation. Consultation libre et gratuite.">
 
 <!-- Polices -->
@@ -30,12 +30,16 @@
 <!-- ======================= EN-TÊTE ======================= -->
 <header class="site-header">
   <div class="site-header__bar glass">
-    <a href="#/" class="brand" data-route-link>
-      <span class="brand__mark">Publication</span>
-      <span class="brand__tagline">Études &amp; recherches</span>
+    <a href="#/" class="brand" data-route-link id="brand-link">
+      <svg class="brand__back-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden><path d="m15 18-6-6 6-6"/></svg>
+      <span class="brand__mark" id="brand-mark">Entropy</span>
+      <span class="brand__tagline" id="brand-tagline">Études &amp; recherches</span>
     </a>
 
     <nav class="nav-actions" aria-label="Actions">
+      <button type="button" class="icon-btn" id="toc-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Sommaire" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h16"/></svg>
+      </button>
       <button type="button" class="icon-btn" id="reading-mode-toggle" aria-pressed="false" aria-label="Mode lecture" hidden>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6a2 2 0 0 1 2-2h5a3 3 0 0 1 3 3v13a2.5 2.5 0 0 0-2.5-2.5H2V6Z"/><path d="M22 6a2 2 0 0 0-2-2h-5a3 3 0 0 0-3 3v13a2.5 2.5 0 0 1 2.5-2.5H22V6Z"/></svg>
       </button>
@@ -51,6 +55,10 @@
           <button type="button" class="theme-menu__option" role="menuitemradio" data-theme-choice="dark">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
             Sombre
+          </button>
+          <button type="button" class="theme-menu__option" role="menuitemradio" data-theme-choice="night">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/><circle cx="17.5" cy="7" r="0.9" fill="currentColor" stroke="none"/><circle cx="14.5" cy="4.5" r="0.6" fill="currentColor" stroke="none"/></svg>
+            Nuit
           </button>
           <button type="button" class="theme-menu__option" role="menuitemradio" data-theme-choice="system">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
@@ -92,18 +100,6 @@
 
   <!-- Vue : ÉTUDE INDIVIDUELLE -->
   <section id="view-study" class="study-page" hidden>
-    <div class="study-topbar glass">
-      <div class="study-topbar__inner shell">
-        <a href="#/" class="back-link" data-route-link>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
-          Retour aux études
-        </a>
-      </div>
-    </div>
-
-    <!-- Table des matières — barre horizontale mobile -->
-    <nav class="toc-mobile glass" id="toc-mobile" aria-label="Sommaire" hidden></nav>
-
     <div class="study-layout shell">
       <div class="content-measure">
         <header class="study-header" id="study-header"></header>
@@ -144,7 +140,7 @@
 <!-- ======================= PIED DE PAGE ======================= -->
 <footer class="site-footer">
   <div class="site-footer__bar">
-    <span>© <span id="footer-year"></span> Publication — Bibliothèque numérique d'études</span>
+    <span>© <span id="footer-year"></span> Entropy — Bibliothèque numérique d'études</span>
     <span>Consultation libre et gratuite</span>
   </div>
 </footer>
@@ -159,6 +155,18 @@
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
   Quitter le mode lecture
 </button>
+
+<!-- ======================= SOMMAIRE — PANNEAU MOBILE/TABLETTE ======================= -->
+<div class="toc-drawer-overlay" id="toc-drawer-overlay" data-open="false"></div>
+<aside class="toc-drawer" id="toc-drawer" data-open="false" aria-label="Sommaire" aria-hidden="true">
+  <div class="toc-drawer__header">
+    <span class="toc-drawer__title">Sommaire</span>
+    <button type="button" class="icon-btn" id="toc-drawer-close" aria-label="Fermer le sommaire">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav class="toc-drawer__nav" id="toc-drawer-nav"></nav>
+</aside>
 
 <!-- ======================= LIGHTBOX IMAGE ======================= -->
 <div class="lightbox" id="lightbox" data-open="false" role="dialog" aria-modal="true" aria-label="Image agrandie">
