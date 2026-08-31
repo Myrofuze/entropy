@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Entropy — Bibliothèque d'études</title>
+<title>Publication — Bibliothèque d'études</title>
 <meta name="description" content="Bibliothèque numérique des études publiées par l'organisation. Consultation libre et gratuite.">
 
 <!-- Polices -->
@@ -30,10 +30,9 @@
 <!-- ======================= EN-TÊTE ======================= -->
 <header class="site-header">
   <div class="site-header__bar glass">
-    <a href="#/" class="brand" data-route-link id="brand-link">
-      <svg class="brand__back-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden><path d="m15 18-6-6 6-6"/></svg>
-      <span class="brand__mark" id="brand-mark">Entropy</span>
-      <span class="brand__tagline" id="brand-tagline">Études &amp; recherches</span>
+    <a href="#/" class="brand" data-route-link>
+      <span class="brand__mark">Publication</span>
+      <span class="brand__tagline">Études &amp; recherches</span>
     </a>
 
     <nav class="nav-actions" aria-label="Actions">
@@ -93,6 +92,15 @@
 
   <!-- Vue : ÉTUDE INDIVIDUELLE -->
   <section id="view-study" class="study-page" hidden>
+    <div class="study-topbar glass">
+      <div class="study-topbar__inner shell">
+        <a href="#/" class="back-link" data-route-link>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+          Retour aux études
+        </a>
+      </div>
+    </div>
+
     <!-- Table des matières — barre horizontale mobile -->
     <nav class="toc-mobile glass" id="toc-mobile" aria-label="Sommaire" hidden></nav>
 
@@ -136,7 +144,7 @@
 <!-- ======================= PIED DE PAGE ======================= -->
 <footer class="site-footer">
   <div class="site-footer__bar">
-    <span>© <span id="footer-year"></span> Entropy — Bibliothèque numérique d'études</span>
+    <span>© <span id="footer-year"></span> Publication — Bibliothèque numérique d'études</span>
     <span>Consultation libre et gratuite</span>
   </div>
 </footer>
