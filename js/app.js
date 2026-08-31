@@ -401,9 +401,17 @@
     scrollTop: document.getElementById("scroll-top"),
     tocSidebar: document.getElementById("toc-sidebar"),
     tocSidebarNav: document.getElementById("toc-sidebar-nav"),
-    tocMobile: document.getElementById("toc-mobile"),
+    tocToggle: document.getElementById("toc-toggle"),
+    tocDrawer: document.getElementById("toc-drawer"),
+    tocDrawerNav: document.getElementById("toc-drawer-nav"),
+    tocDrawerOverlay: document.getElementById("toc-drawer-overlay"),
+    tocDrawerClose: document.getElementById("toc-drawer-close"),
     readingModeToggle: document.getElementById("reading-mode-toggle"),
     readingModeExit: document.getElementById("reading-mode-exit"),
+    brandLink: document.getElementById("brand-link"),
+    brandBackIcon: document.querySelector(".brand__back-icon"),
+    brandMark: document.getElementById("brand-mark"),
+    brandTagline: document.getElementById("brand-tagline"),
   };
 
   let uiState = { query: "", category: "" };
@@ -504,7 +512,7 @@
       return;
     }
 
-    document.title = `${study.title} — Publication`;
+    document.title = `${study.title} — Entropy`;
 
     const dateLabel = formatDate(study.date);
     const updatedLabel = formatDate(study.updated);
@@ -685,38 +693,36 @@
 
     if (!tocHeadings.length) {
       el.tocSidebar.hidden = true;
-      el.tocMobile.hidden = true;
+      el.tocToggle.hidden = true;
       el.tocSidebarNav.innerHTML = "";
-      el.tocMobile.innerHTML = "";
+      el.tocDrawerNav.innerHTML = "";
       return;
     }
 
     // Normaliser les niveaux relatifs (le plus petit heading trouvé = niveau 1 visuellement)
     const minLevel = Math.min(...tocHeadings.map((h) => h.level));
 
-    el.tocSidebarNav.innerHTML = tocHeadings
+    const linksHtml = tocHeadings
       .map(
         (h) => `<a class="toc-link" data-level="${Math.min(h.level - minLevel + 1, 4)}" data-toc-id="${h.id}" href="#${h.id}">${escapeHtml(h.text)}</a>`
       )
       .join("");
 
-    el.tocMobile.innerHTML = tocHeadings
-      .map(
-        (h) => `<a class="toc-mobile__chip" data-level="${Math.min(h.level - minLevel + 1, 4)}" data-toc-id="${h.id}" href="#${h.id}">${escapeHtml(h.text)}</a>`
-      )
-      .join("");
+    el.tocSidebarNav.innerHTML = linksHtml;
+    el.tocDrawerNav.innerHTML = linksHtml;
 
     el.tocSidebar.hidden = false;
-    el.tocMobile.hidden = false;
+    el.tocToggle.hidden = false;
 
     // Navigation douce sans dépendre du hash-router (évite un conflit de route)
     const allTocLinks = [
       ...el.tocSidebarNav.querySelectorAll("[data-toc-id]"),
-      ...el.tocMobile.querySelectorAll("[data-toc-id]"),
+      ...el.tocDrawerNav.querySelectorAll("[data-toc-id]"),
     ];
     allTocLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
         e.preventDefault();
+        closeTocDrawer();
         const target = document.getElementById(link.dataset.tocId);
         if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
       });
@@ -739,12 +745,40 @@
     document.querySelectorAll("[data-toc-id]").forEach((link) => {
       link.setAttribute("data-active", String(link.dataset.tocId === activeId));
     });
-    // Centrer la puce active dans la barre mobile
-    const activeChip = el.tocMobile.querySelector(`[data-toc-id="${activeId}"]`);
-    if (activeChip) {
-      activeChip.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-    }
   }
+
+  /* ------------------------------------------------------------------
+     9c-bis. SOMMAIRE — panneau (drawer) mobile/tablette
+     ------------------------------------------------------------------ */
+
+  function openTocDrawer() {
+    el.tocDrawer.setAttribute("data-open", "true");
+    el.tocDrawer.setAttribute("aria-hidden", "false");
+    el.tocDrawerOverlay.setAttribute("data-open", "true");
+    el.tocToggle.setAttribute("aria-expanded", "true");
+  }
+
+  function closeTocDrawer() {
+    el.tocDrawer.setAttribute("data-open", "false");
+    el.tocDrawer.setAttribute("aria-hidden", "true");
+    el.tocDrawerOverlay.setAttribute("data-open", "false");
+    el.tocToggle.setAttribute("aria-expanded", "false");
+  }
+
+  el.tocToggle.addEventListener("click", () => {
+    const open = el.tocDrawer.getAttribute("data-open") === "true";
+    if (open) closeTocDrawer();
+    else openTocDrawer();
+  });
+
+  el.tocDrawerClose.addEventListener("click", closeTocDrawer);
+  el.tocDrawerOverlay.addEventListener("click", closeTocDrawer);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && el.tocDrawer.getAttribute("data-open") === "true") {
+      closeTocDrawer();
+    }
+  });
 
   /* ------------------------------------------------------------------
      9d. BARRE DE PROGRESSION DE LECTURE
@@ -765,8 +799,8 @@
      ------------------------------------------------------------------ */
 
   function updateScrollTopVisibility() {
-  el.scrollTop?.setAttribute("data-visible", String(window.scrollY > 480));
-}
+    el.scrollTop.setAttribute("data-visible", String(window.scrollY > 480));
+  }
 
   el.scrollTop.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1034,7 +1068,18 @@
     if (name !== "study") {
       exitReadingMode();
       el.readProgressBar.style.width = "0%";
+      closeTocDrawer();
+      el.tocToggle.hidden = true;
     }
+
+    // Le logo devient un lien "Retour aux études" sur la page étude
+    const isStudy = name === "study";
+    el.brandLink.setAttribute("data-mode", isStudy ? "back" : "logo");
+    el.brandBackIcon.hidden = !isStudy;
+    el.brandMark.textContent = isStudy ? "Retour aux études" : "Entropy";
+    el.brandTagline.hidden = isStudy;
+    el.brandLink.setAttribute("aria-label", isStudy ? "Retour à la liste des études" : "Accueil");
+
     const active = name === "list" ? el.viewList : name === "study" ? el.viewStudy : el.viewNotFound;
     active.classList.remove("fade-in");
     // force reflow pour rejouer l'animation
@@ -1052,7 +1097,7 @@
       return;
     }
 
-    document.title = "Publication — Bibliothèque d'études";
+    document.title = "Entropy — Bibliothèque d'études";
     renderList();
     showView("list");
   }
