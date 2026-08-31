@@ -5,9 +5,11 @@ author: "Leandro Boffy"
 date: "2026-08-30"
 category: "Aérospatial"
 description: "Concept préliminaire d'un système actif de suppression totale du boil-off des ergols cryogéniques pour Starship HLS."
------------------------------------------------------------------------------------------------------------------------------------
+---
 
 # Résumé
+
+![Vue 3D du projet](image/zbo-system-overview.png)
 
 Cette étude présente un concept préliminaire d'ingénierie développé dans un cadre de recherche indépendant. À ce stade, le projet est entièrement volontaire et n'est associé à aucune demande de financement, à l'exception d'éventuelles phases futures de recherche et développement.
 
@@ -97,6 +99,8 @@ Le fluide de travail retenu est l'azote liquide.
 # Production d'énergie
 
 La conversion énergétique repose sur quatre moteurs linéaires à piston libre double effet.
+
+![Moteur stirling avancé de la Nasa](image/free-piston-stirling.png)
 
 Contrairement à un moteur Stirling classique :
 
