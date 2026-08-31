@@ -186,6 +186,8 @@ button { font: inherit; color: inherit; }
   margin-inline: auto;
 }
 
+main { display: block; }
+
 /* -------------------------------------------------------------------------
    4. LIQUID GLASS — usage restreint (nav, recherche, boutons clés, panneaux)
    ------------------------------------------------------------------------- */
@@ -229,16 +231,11 @@ button { font: inherit; color: inherit; }
    ------------------------------------------------------------------------- */
 
 .site-header {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
   z-index: 100;
   padding: 0.7rem clamp(1.1rem, 4vw, 2.5rem);
 }
-
-/* Compense l'espace laissé par le header désormais fixed */
-main { padding-top: 4.2rem; }
 
 .site-header__bar {
   max-width: 78rem;
@@ -252,51 +249,19 @@ main { padding-top: 4.2rem; }
 
 .brand {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  align-items: baseline;
+  gap: 0.55rem;
   text-decoration: none;
   margin-right: auto;
   min-width: 0;
-  color: inherit;
-  padding: 0.4rem 0.6rem;
-  margin-left: -0.6rem;
-  border-radius: var(--radius-m);
-  transition: color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
-}
-
-.brand:hover { color: var(--accent); }
-
-/* En mode "retour aux études" (page étude), le bouton devient plus visible */
-.brand[data-mode="back"] {
-  background: var(--surface);
-  border: 1px solid var(--border);
-}
-
-.brand[data-mode="back"]:hover {
-  background: var(--accent-soft);
-  border-color: var(--accent-ring);
-}
-
-.brand__back-icon {
-  width: 1.05rem;
-  height: 1.05rem;
-  flex-shrink: 0;
 }
 
 .brand__mark {
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 0.95rem;
-  letter-spacing: -0.005em;
-  white-space: nowrap;
-  align-self: center;
-}
-
-.brand[data-mode="logo"] .brand__mark {
   font-family: var(--font-display);
+  font-weight: 600;
   font-size: 1.15rem;
   letter-spacing: -0.01em;
-  align-self: baseline;
+  white-space: nowrap;
 }
 
 .brand__tagline {
@@ -306,11 +271,10 @@ main { padding-top: 4.2rem; }
   overflow: hidden;
   text-overflow: ellipsis;
   display: none;
-  align-self: baseline;
 }
 
 @media (min-width: 640px) {
-  .brand__tagline:not([hidden]) { display: inline; }
+  .brand__tagline { display: inline; }
 }
 
 .nav-actions {
@@ -661,6 +625,19 @@ main { padding-top: 4.2rem; }
 
 .study-page { padding-bottom: 5rem; }
 
+/* Barre sticky "retour" — reste visible au scroll */
+.study-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+}
+
+.study-topbar__inner { padding-block: 0.6rem; }
+
 .back-link {
   display: inline-flex;
   align-items: center;
@@ -675,28 +652,21 @@ main { padding-top: 4.2rem; }
 .back-link:hover { color: var(--accent); }
 .back-link svg { width: 1rem; height: 1rem; }
 
-/* Layout : le contenu reste centré dans la fenêtre ; la TOC flotte à
-   droite, en dehors du flux, pour ne jamais décaler le centrage du texte. */
+/* Layout deux colonnes : contenu + TOC sidebar */
 .study-layout {
-  padding-top: 2.2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  padding-top: 1.6rem;
 }
 
-.toc-sidebar {
-  display: none;
-}
-
-@media (min-width: 1440px) {
-  .toc-sidebar {
-    display: block;
-    position: fixed;
-    top: 5.5rem;
-    right: clamp(1rem, 3vw, 2.5rem);
-    width: 14rem;
-    max-height: calc(100vh - 7rem);
-    overflow-y: auto;
-    scrollbar-width: thin;
-    z-index: 60;
+@media (min-width: 1180px) {
+  .study-layout {
+    grid-template-columns: minmax(0, 1fr) 15rem;
+    gap: 3rem;
+    align-items: start;
   }
+  .content-measure { margin-inline: 0; }
 }
 
 .study-header {
@@ -808,6 +778,22 @@ hr.divider {
    11b. TABLE DES MATIÈRES — sidebar desktop
    ------------------------------------------------------------------------- */
 
+.toc-sidebar {
+  display: none;
+}
+
+@media (min-width: 1180px) {
+  .toc-sidebar {
+    display: block;
+    position: sticky;
+    top: 4.5rem;
+    max-height: calc(100vh - 5.5rem);
+    overflow-y: auto;
+    padding-left: 0.2rem;
+    scrollbar-width: thin;
+  }
+}
+
 .toc-sidebar__nav {
   border-left: 1px solid var(--border);
   padding-left: 0.9rem;
@@ -862,88 +848,47 @@ hr.divider {
 }
 
 /* -------------------------------------------------------------------------
-   11c. SOMMAIRE — panneau (drawer) mobile/tablette
+   11c. TABLE DES MATIÈRES — barre mobile
    ------------------------------------------------------------------------- */
 
-.toc-drawer-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 190;
-  background: hsl(30 15% 5% / 0.5);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--dur-base) var(--ease);
-}
-
-.toc-drawer-overlay[data-open="true"] {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.toc-drawer {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 200;
-  width: min(85vw, 22rem);
-  background: var(--bg-raised);
-  border-left: 1px solid var(--border);
-  box-shadow: -12px 0 32px hsl(0 0% 0% / 0.15);
+.toc-mobile {
+  position: sticky;
+  top: 3.4rem;
+  z-index: 80;
   display: flex;
-  flex-direction: column;
-  transform: translateX(100%);
-  transition: transform var(--dur-base) var(--ease);
-}
-
-.toc-drawer[data-open="true"] {
-  transform: translateX(0);
-}
-
-.toc-drawer__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1.1rem;
-  border-bottom: 1px solid var(--border);
-  flex-shrink: 0;
-}
-
-.toc-drawer__title {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.05rem;
-}
-
-.toc-drawer__nav {
-  overflow-y: auto;
-  padding: 0.7rem 0.6rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.05rem;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding: 0.6rem clamp(1.1rem, 4vw, 2.5rem);
+  border-left: none;
+  border-right: none;
+  border-top: none;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
 
-@media (min-width: 1440px) {
-  #toc-toggle { display: none !important; }
+.toc-mobile::-webkit-scrollbar { display: none; }
+
+@media (min-width: 1180px) {
+  .toc-mobile { display: none !important; }
 }
 
-/* Les liens réutilisent la classe .toc-link (mêmes règles que la sidebar
-   desktop) mais avec une zone tactile plus grande dans le drawer. */
-.toc-drawer__nav .toc-link {
-  max-width: none;
-  white-space: normal;
-  padding: 0.6rem 0.7rem;
-  font-size: 0.88rem;
+.toc-mobile__chip {
+  flex-shrink: 0;
+  font-size: 0.78rem;
+  color: var(--text-soft);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  text-decoration: none;
 }
 
-.toc-drawer__nav .toc-link[data-level="3"] { font-size: 0.84rem; }
-.toc-drawer__nav .toc-link[data-level="4"] { font-size: 0.82rem; }
-
-.toc-drawer__nav .toc-link[data-active="true"]::before {
-  left: 0;
+.toc-mobile__chip[data-level="1"] { font-weight: 600; }
+.toc-mobile__chip[data-active="true"] {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
 }
 
 /* -------------------------------------------------------------------------
@@ -983,6 +928,8 @@ hr.divider {
    ------------------------------------------------------------------------- */
 
 body[data-reading-mode="true"] .site-header,
+body[data-reading-mode="true"] .study-topbar,
+body[data-reading-mode="true"] .toc-mobile,
 body[data-reading-mode="true"] .toc-sidebar,
 body[data-reading-mode="true"] .study-header__actions {
   display: none !important;
@@ -1003,17 +950,17 @@ body[data-reading-mode="true"] .study-header__actions {
   font-weight: 600;
   color: var(--text);
   cursor: pointer;
-  max-width: calc(100vw - 2rem);
 }
 
-.reading-mode-exit svg { width: 1rem; height: 1rem; flex-shrink: 0; }
+.reading-mode-exit svg { width: 1rem; height: 1rem; }
 
 body[data-reading-mode="true"] .reading-mode-exit {
   display: inline-flex;
 }
 
 body[data-reading-mode="true"] .study-layout {
-  padding-top: clamp(3.5rem, 8vw, 4.5rem);
+  grid-template-columns: 1fr;
+  padding-top: 2.4rem;
 }
 
 body[data-reading-mode="true"] .content-measure {
@@ -1022,13 +969,12 @@ body[data-reading-mode="true"] .content-measure {
 }
 
 body[data-reading-mode="true"] .study-body {
-  font-size: clamp(1.05rem, 0.98rem + 0.3vw, 1.2rem);
-  line-height: 1.8;
+  font-size: 1.2rem;
+  line-height: 1.85;
 }
 
 body[data-reading-mode="true"] .study-header h1 {
-  font-size: clamp(1.9rem, 1.5rem + 3vw, 3.4rem);
-  overflow-wrap: break-word;
+  font-size: clamp(2.2rem, 2rem + 2vw, 3.4rem);
 }
 
 /* -------------------------------------------------------------------------
@@ -1352,12 +1298,4 @@ body[data-reading-mode="true"] .study-header h1 {
   .study-item__top { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
   .btn { flex: 1; justify-content: center; }
   .study-header__actions { flex-direction: column; }
-}
-@media (max-width: 1024px) {
-  .toc-sidebar,
-  .toc-drawer,
-  .toc-drawer-overlay,
-  #toc-toggle {
-    display: none !important;
-  }
 }
