@@ -765,7 +765,7 @@
      ------------------------------------------------------------------ */
 
   function updateScrollTopVisibility() {
-    el.tocToggle?.addEventListener('click', ...)
+    el.scrollTop.setAttribute("data-visible", String(window.scrollY > 480));
   }
 
   el.scrollTop.addEventListener("click", () => {
