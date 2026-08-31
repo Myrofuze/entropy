@@ -249,11 +249,21 @@ main { display: block; }
 
 .brand {
   display: flex;
-  align-items: baseline;
-  gap: 0.55rem;
+  align-items: center;
+  gap: 0.5rem;
   text-decoration: none;
   margin-right: auto;
   min-width: 0;
+  color: inherit;
+  transition: color var(--dur-fast) var(--ease);
+}
+
+.brand:hover { color: var(--accent); }
+
+.brand__back-icon {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
 }
 
 .brand__mark {
@@ -262,6 +272,7 @@ main { display: block; }
   font-size: 1.15rem;
   letter-spacing: -0.01em;
   white-space: nowrap;
+  align-self: baseline;
 }
 
 .brand__tagline {
@@ -271,6 +282,7 @@ main { display: block; }
   overflow: hidden;
   text-overflow: ellipsis;
   display: none;
+  align-self: baseline;
 }
 
 @media (min-width: 640px) {
@@ -625,19 +637,6 @@ main { display: block; }
 
 .study-page { padding-bottom: 5rem; }
 
-/* Barre sticky "retour" — reste visible au scroll */
-.study-topbar {
-  position: sticky;
-  top: 0;
-  z-index: 90;
-  border-radius: 0;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-}
-
-.study-topbar__inner { padding-block: 0.6rem; }
-
 .back-link {
   display: inline-flex;
   align-items: center;
@@ -652,21 +651,28 @@ main { display: block; }
 .back-link:hover { color: var(--accent); }
 .back-link svg { width: 1rem; height: 1rem; }
 
-/* Layout deux colonnes : contenu + TOC sidebar */
+/* Layout : le contenu reste centré dans la fenêtre ; la TOC flotte à
+   droite, en dehors du flux, pour ne jamais décaler le centrage du texte. */
 .study-layout {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
-  padding-top: 1.6rem;
+  padding-top: 2.2rem;
 }
 
-@media (min-width: 1180px) {
-  .study-layout {
-    grid-template-columns: minmax(0, 1fr) 15rem;
-    gap: 3rem;
-    align-items: start;
+.toc-sidebar {
+  display: none;
+}
+
+@media (min-width: 1440px) {
+  .toc-sidebar {
+    display: block;
+    position: fixed;
+    top: 5.5rem;
+    right: clamp(1rem, 3vw, 2.5rem);
+    width: 14rem;
+    max-height: calc(100vh - 7rem);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    z-index: 60;
   }
-  .content-measure { margin-inline: 0; }
 }
 
 .study-header {
@@ -777,22 +783,6 @@ hr.divider {
 /* -------------------------------------------------------------------------
    11b. TABLE DES MATIÈRES — sidebar desktop
    ------------------------------------------------------------------------- */
-
-.toc-sidebar {
-  display: none;
-}
-
-@media (min-width: 1180px) {
-  .toc-sidebar {
-    display: block;
-    position: sticky;
-    top: 4.5rem;
-    max-height: calc(100vh - 5.5rem);
-    overflow-y: auto;
-    padding-left: 0.2rem;
-    scrollbar-width: thin;
-  }
-}
 
 .toc-sidebar__nav {
   border-left: 1px solid var(--border);
@@ -928,7 +918,6 @@ hr.divider {
    ------------------------------------------------------------------------- */
 
 body[data-reading-mode="true"] .site-header,
-body[data-reading-mode="true"] .study-topbar,
 body[data-reading-mode="true"] .toc-mobile,
 body[data-reading-mode="true"] .toc-sidebar,
 body[data-reading-mode="true"] .study-header__actions {
