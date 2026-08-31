@@ -29,6 +29,8 @@ La physique moderne décrit remarquablement bien une immense quantité de phéno
 
 Par exemple, les singularités prédites par la relativité générale apparaissent lorsque certaines quantités physiques deviennent divergentes. Cela est généralement interprété comme le signe que la relativité générale cesse d'être suffisante dans ces conditions extrêmes.
 
+![Un trou noir](image/trou-noir-nasa.png)
+
 De même, la nature profonde de l'espace-temps reste une question ouverte : est-il fondamental, émergent, discret, continu ?
 
 La théorie du filet cordonique part de cette interrogation :
@@ -86,6 +88,8 @@ Cette relation n'est cependant pas encore une équation physique complète. Il f
 ---
 
 ## 4. Une vitesse de propagation émergente
+
+![Une fusion de deux trou noir](image/fusion-trous-noirs-nasa.png)
 
 Le modèle introduit également une idée inspirée de la mécanique classique des milieux continus.
 
