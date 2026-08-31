@@ -1,0 +1,372 @@
+---
+title: "L'augmentation du CO₂ atmosphérique depuis 1958 : évolution, saisonnalité et mécanisme physique de l'effet de serre"
+author: "Boffy Léandro"
+date: "2026-08-30"
+category: "Climatologie"
+description: "Analyse de l'évolution du dioxyde de carbone atmosphérique à partir des mesures de Mauna Loa et rappel du mécanisme physique de l'effet de serre."
+---
+
+# L'augmentation du CO₂ atmosphérique depuis 1958
+
+## Résumé
+
+Le dioxyde de carbone (CO₂) est un constituant naturel de l'atmosphère et un gaz à effet de serre. Sa concentration atmosphérique peut être mesurée directement et suivie sur de longues périodes.
+
+Cette étude examine l'évolution de la concentration atmosphérique de CO₂ à partir de la série de mesures effectuées à l'observatoire de Mauna Loa, à Hawaï. La série commence en 1958 avec les travaux de Charles David Keeling et constitue aujourd'hui l'une des séries instrumentales les plus importantes pour suivre l'évolution du CO₂ atmosphérique.
+
+L'analyse montre une augmentation continue de la concentration moyenne de CO₂ depuis le début des mesures, à laquelle se superpose une oscillation saisonnière régulière.
+
+L'étude rappelle également le mécanisme physique responsable de l'effet de serre et explique pourquoi une augmentation du CO₂ modifie le bilan radiatif terrestre.
+
+---
+
+# 1. Introduction
+
+L'atmosphère terrestre est constituée principalement d'azote et d'oxygène. Le dioxyde de carbone ne représente qu'une petite fraction de l'atmosphère, mais cette faible concentration ne signifie pas qu'il est radiativement négligeable.
+
+Certaines molécules atmosphériques peuvent absorber et réémettre une partie du rayonnement infrarouge émis par la surface terrestre. Le CO₂ fait partie de ces gaz.
+
+L'objectif de cette étude est double :
+
+1. caractériser l'évolution observée de la concentration atmosphérique de CO₂ ;
+2. expliquer le mécanisme physique permettant de relier cette évolution au bilan énergétique terrestre.
+
+L'étude ne cherche pas à construire un modèle climatique complet. Elle se concentre volontairement sur les observations de CO₂ et sur le mécanisme radiatif fondamental.
+
+---
+
+# 2. Données utilisées
+
+## 2.1 Observatoire de Mauna Loa
+
+Les données utilisées proviennent du NOAA Global Monitoring Laboratory et correspondent aux mesures effectuées à l'observatoire de Mauna Loa, à Hawaï.
+
+Les premières mesures de la série ont commencé en mars 1958 sous la direction de Charles David Keeling, avec les mesures de Scripps Institution of Oceanography. NOAA a commencé ses propres mesures en 1974.
+
+L'observatoire se situe à environ 3400 m d'altitude.
+
+La concentration est exprimée en **ppm**, ou parties par million.
+
+Une concentration de :
+
+$$
+400\ ppm
+$$
+
+signifie qu'environ 400 molécules sur un million de molécules d'air sec correspondent à du CO₂.
+
+> **Source des données :** NOAA Global Monitoring Laboratory, Trends in Atmospheric Carbon Dioxide.
+
+---
+
+# 3. Évolution à long terme
+
+![Évolution du CO₂ atmosphérique à Mauna Loa depuis 1958](image/co2-mauna-loa.png)
+
+La série de Mauna Loa montre une augmentation très nette de la concentration atmosphérique de CO₂ depuis 1958.
+
+Au début de la série, la concentration se situe autour de 315 ppm.
+
+À partir des années suivantes, la concentration augmente progressivement, avec une pente qui devient globalement plus importante au cours du temps.
+
+Les dernières valeurs de la série dépassent désormais 420 ppm.
+
+L'évolution n'est cependant pas une droite parfaite.
+
+On observe une oscillation annuelle régulière superposée à la tendance générale.
+
+---
+
+# 4. La variation saisonnière
+
+![Variation saisonnière récente du CO₂ à Mauna Loa](image/co2-mauna-loa-recent.png)
+
+La variation annuelle est particulièrement visible dans les données récentes.
+
+La concentration augmente généralement pendant une partie de l'année puis diminue pendant une autre partie avant de recommencer un nouveau cycle.
+
+Cette oscillation est principalement liée au cycle saisonnier de la biosphère terrestre.
+
+Dans l'hémisphère Nord, où se trouve une grande partie des terres émergées et de la végétation terrestre, la photosynthèse retire du CO₂ de l'atmosphère pendant la période de croissance végétale.
+
+À l'inverse, lorsque la végétation entre en période de dormance et que la décomposition de la matière organique continue, le flux net de carbone vers l'atmosphère augmente.
+
+Le résultat est une oscillation annuelle de la concentration atmosphérique.
+
+Cette oscillation ne doit pas être confondue avec la tendance de fond.
+
+On peut schématiquement écrire :
+
+$$
+CO_2(t) = T(t) + S(t)
+$$
+
+où :
+
+- $T(t)$ représente la tendance à long terme ;
+- $S(t)$ représente la variation saisonnière.
+
+La courbe réelle correspond donc à la superposition de plusieurs phénomènes.
+
+---
+
+# 5. Pourquoi le CO₂ absorbe-t-il le rayonnement infrarouge ?
+
+La surface terrestre reçoit principalement de l'énergie du Soleil sous forme de rayonnement électromagnétique relativement court.
+
+Après avoir absorbé cette énergie, la surface terrestre se réchauffe et réémet de l'énergie principalement sous forme de rayonnement infrarouge thermique.
+
+Le spectre d'émission d'un corps approximativement à température terrestre est centré dans l'infrarouge.
+
+Les molécules atmosphériques ne réagissent cependant pas toutes de la même manière à ce rayonnement.
+
+Le CO₂ possède des modes de vibration moléculaire capables d'interagir avec certaines longueurs d'onde du rayonnement infrarouge.
+
+![Illustration du mécanisme de l'effet de serre](image/effet-serre.png)
+
+Une molécule de CO₂ peut donc absorber un photon infrarouge correspondant à une transition moléculaire autorisée.
+
+Après absorption, l'énergie peut être redistribuée par collisions ou réémise sous forme de rayonnement.
+
+Le phénomène ne consiste donc pas simplement à « retenir la chaleur ».
+
+Il s'agit d'une modification des échanges radiatifs et énergétiques entre la surface, l'atmosphère et l'espace.
+
+---
+
+# 6. Le bilan énergétique terrestre
+
+À l'échelle globale et sur une période suffisamment longue, le système climatique tend vers un équilibre énergétique :
+
+$$
+P_{in} \approx P_{out}
+$$
+
+où $P_{in}$ représente la puissance moyenne reçue du Soleil et $P_{out}$ la puissance moyenne finalement réémise vers l'espace.
+
+Si la quantité de rayonnement infrarouge pouvant s'échapper directement vers l'espace est modifiée par la composition de l'atmosphère, le profil de température nécessaire pour rétablir l'équilibre énergétique est lui aussi modifié.
+
+Le principe général peut être représenté par :
+
+$$
+\frac{dE}{dt}=P_{in}-P_{out}
+$$
+
+Si :
+
+$$
+P_{in}>P_{out}
+$$
+
+alors l'énergie totale du système augmente.
+
+Si :
+
+$$
+P_{in}<P_{out}
+$$
+
+alors elle diminue.
+
+À l'équilibre :
+
+$$
+\frac{dE}{dt}=0
+$$
+
+L'effet de serre naturel est donc fondamental pour le climat terrestre. Sans les gaz à effet de serre, la température moyenne de surface serait beaucoup plus basse.
+
+NASA estime que l'effet de serre naturel maintient la température moyenne de surface autour de 15 °C, soit environ 33 °C de plus que dans une situation hypothétique sans cet effet.
+
+---
+
+# 7. Une augmentation du CO₂ implique-t-elle une augmentation linéaire de la température ?
+
+Non.
+
+La relation entre concentration de CO₂ et température n'est pas une simple équation linéaire valable dans toutes les situations.
+
+Le système climatique possède de nombreuses composantes :
+
+- atmosphère ;
+- océans ;
+- cryosphère ;
+- biosphère ;
+- sols ;
+- nuages ;
+- aérosols ;
+- circulation atmosphérique ;
+- circulation océanique.
+
+Le CO₂ constitue donc un facteur important du bilan radiatif, mais la température observée à un endroit donné ou pendant une année donnée ne peut pas être calculée à partir de la seule concentration de CO₂.
+
+Il faut distinguer deux questions :
+
+**Question 1 :**
+
+> Le CO₂ possède-t-il un effet radiatif mesurable ?
+
+Oui.
+
+**Question 2 :**
+
+> Peut-on déterminer la température future uniquement à partir de la concentration de CO₂ ?
+
+Non.
+
+Cette distinction est importante lorsqu'on interprète des données climatiques.
+
+---
+
+# 8. Ordre de grandeur de l'augmentation
+
+Si l'on considère approximativement :
+
+$$
+C_{1958}\approx315\ ppm
+$$
+
+et une valeur récente d'environ :
+
+$$
+C_{2026}\approx432\ ppm
+$$
+
+l'augmentation absolue est :
+
+$$
+\Delta C = 432-315
+$$
+
+$$
+\boxed{\Delta C \approx117\ ppm}
+$$
+
+L'augmentation relative vaut approximativement :
+
+$$
+\frac{432-315}{315}\times100
+$$
+
+soit :
+
+$$
+\boxed{\approx37\%}
+$$
+
+Cette valeur doit être interprétée avec prudence : la valeur exacte dépend de la date choisie et du fait que les dernières données peuvent encore être révisées.
+
+---
+
+# 9. Pourquoi la courbe accélère-t-elle ?
+
+Une première approximation pourrait consister à ajuster une droite :
+
+$$
+C(t)=at+b
+$$
+
+Mais la série observée n'est pas parfaitement linéaire.
+
+La quantité de CO₂ ajoutée à l'atmosphère chaque année dépend notamment :
+
+- des émissions liées aux combustibles fossiles ;
+- des changements d'utilisation des terres ;
+- des échanges avec les océans ;
+- de l'absorption par la biosphère terrestre.
+
+Une fraction du CO₂ émis reste dans l'atmosphère tandis qu'une autre fraction est absorbée par les océans et les écosystèmes terrestres.
+
+Le système peut donc être représenté de manière simplifiée par :
+
+$$
+\frac{dC}{dt}=E-R
+$$
+
+où :
+
+- $C$ est la quantité de carbone atmosphérique ;
+- $E$ représente les apports ;
+- $R$ représente les retraits nets.
+
+Cette équation ne constitue pas un modèle climatique complet, mais elle permet de comprendre pourquoi la pente de la concentration atmosphérique dépend du bilan entre sources et puits de carbone.
+
+---
+
+# 10. Tableau récapitulatif
+
+| Période | Concentration approximative de CO₂ |
+|---|---:|
+| 1958 | ~315 ppm |
+| 1970 | ~325 ppm |
+| 1980 | ~339 ppm |
+| 1990 | ~354 ppm |
+| 2000 | ~369 ppm |
+| 2010 | ~390 ppm |
+| 2020 | ~414 ppm |
+| 2025 | >420 ppm |
+| 2026 | ~430 ppm |
+
+Les valeurs du tableau sont des ordres de grandeur destinés à visualiser l'évolution générale. Pour une analyse statistique précise, il faut utiliser directement les données numériques NOAA plutôt que lire les valeurs sur le graphique.
+
+---
+
+# 11. Limites de l'étude
+
+Cette étude présente plusieurs limites.
+
+Premièrement, Mauna Loa est un seul site de mesure. La concentration mesurée localement n'est donc pas strictement identique à la moyenne mondiale.
+
+Deuxièmement, les données récentes peuvent être révisées après contrôle qualité et recalibration.
+
+Troisièmement, l'évolution du CO₂ ne permet pas à elle seule de reconstruire toute l'évolution du climat.
+
+Enfin, l'étude présente le mécanisme radiatif de manière volontairement simplifiée. Un traitement complet devrait prendre en compte le transfert radiatif spectral, la pression, la température, la vapeur d'eau, les nuages et les différents gaz atmosphériques.
+
+---
+
+# 12. Conclusion
+
+La série de mesures de Mauna Loa montre une augmentation importante et continue de la concentration atmosphérique de CO₂ depuis le début des observations directes en 1958.
+
+Cette tendance de fond est accompagnée d'une oscillation saisonnière régulière, principalement liée au cycle annuel de la biosphère.
+
+Le CO₂ est un gaz à effet de serre dont les propriétés moléculaires lui permettent d'absorber certaines longueurs d'onde du rayonnement infrarouge terrestre.
+
+L'augmentation de sa concentration modifie donc le bilan radiatif de l'atmosphère.
+
+L'analyse montre cependant qu'il faut éviter de réduire le système climatique à une relation simple entre une seule concentration et une seule température : le climat est un système couplé comprenant l'atmosphère, les océans, les surfaces continentales, la biosphère, les glaces et de nombreux mécanismes de rétroaction.
+
+La principale conclusion de cette étude est donc double :
+
+> **La hausse du CO₂ atmosphérique est directement observable dans les mesures instrumentales depuis 1958.**
+
+et
+
+> **L'interprétation de ses conséquences climatiques nécessite un modèle physique beaucoup plus complet que la seule observation de la concentration.**
+
+---
+
+# Sources
+
+1. NOAA Global Monitoring Laboratory — Trends in Atmospheric Carbon Dioxide  
+   https://gml.noaa.gov/ccgg/trends/
+
+2. NOAA Global Monitoring Laboratory — Mauna Loa CO₂ dataset  
+   https://gml.noaa.gov/data/dataset.php?item=mlo-co2-observatory-monthly
+
+3. NASA — What is the greenhouse effect?  
+   https://science.nasa.gov/climate-change/faq/what-is-the-greenhouse-effect/
+
+4. NASA Earth Observatory — Climate and Earth's Energy Budget  
+   https://earthobservatory.nasa.gov/Features/EnergyBalance/page6.php
+
+5. Keeling, C. D. et al. — Atmospheric carbon dioxide variations at Mauna Loa Observatory, Hawaii, Tellus, 1976.
+
+---
+
+## Crédits des illustrations
+
+**Graphiques CO₂ :** NOAA Global Monitoring Laboratory / Scripps Institution of Oceanography.
+
+**Illustrations de l'effet de serre :** NASA/Goddard Space Flight Center Conceptual Image Lab.
