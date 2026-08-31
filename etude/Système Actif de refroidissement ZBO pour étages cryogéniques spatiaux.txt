@@ -1,0 +1,216 @@
+---
+
+title: "Système Actif de Refroidissement Zero Boil-Off (ZBO) pour Étages Cryogéniques Spatiaux"
+author: "Leandro Boffy"
+date: "2026-08-30"
+category: "Aérospatial"
+description: "Concept préliminaire d'un système actif de suppression totale du boil-off des ergols cryogéniques pour Starship HLS."
+-----------------------------------------------------------------------------------------------------------------------------------
+
+# Résumé
+
+Cette étude présente un concept préliminaire d'ingénierie développé dans un cadre de recherche indépendant. À ce stade, le projet est entièrement volontaire et n'est associé à aucune demande de financement, à l'exception d'éventuelles phases futures de recherche et développement.
+
+L'objectif est d'éliminer activement le phénomène de *boil-off* des ergols cryogéniques — méthane liquide (LCH4) et oxygène liquide (LOX) — stockés dans les réservoirs du véhicule lunaire Starship HLS, répondant ainsi à l'un des principaux défis des missions Artemis de longue durée.
+
+L'architecture proposée repose sur trois éléments principaux :
+
+* Les parois structurelles des réservoirs cryogéniques, utilisées comme collecteur thermique solaire intégré.
+* Quatre moteurs linéaires à piston libre double effet dérivés du programme ASRG de Sunpower.
+* Un système de gestion capillaire des fluides assurant la séparation liquide-vapeur sans pièces mobiles en microgravité.
+
+Le système vise un stockage cryogénique sans perte d'ergol tout en produisant un surplus électrique net compris entre +89 kW et +201 kW selon les scénarios d'exploitation.
+
+La masse préliminaire estimée est de 350 kg.
+
+---
+
+# Problématique
+
+Les missions lunaires prolongées du programme Artemis sont confrontées à un problème critique : la perte progressive d'ergols cryogéniques par évaporation.
+
+Même avec une isolation multicouche (MLI), un flux thermique résiduel traverse les réservoirs.
+
+Pour une surface totale de 1 720 m², un flux thermique résiduel de seulement 0,5 W/m² représente :
+
+$$
+P = 860 \text{ W}
+$$
+
+Cette énergie est suffisante pour provoquer une évaporation continue des ergols sur plusieurs semaines ou mois.
+
+Cette perte réduit directement les marges de sécurité de mission ainsi que la quantité d'ergol disponible pour le retour.
+
+Les architectures actuelles de type Zero Boil-Off utilisent généralement :
+
+* des cryorefroidisseurs électriques ;
+* de grands panneaux solaires déployables ;
+* des systèmes mécaniques complexes.
+
+Ces solutions augmentent la masse embarquée et introduisent de nouveaux points de défaillance.
+
+---
+
+# Approche proposée
+
+L'idée centrale consiste à transformer directement la source du problème — le rayonnement solaire — en ressource énergétique.
+
+Les parois externes des réservoirs deviennent un collecteur thermique intégré.
+
+La surface totale disponible atteint :
+
+$$
+S = 1\,720\ m^2
+$$
+
+dont environ :
+
+$$
+S_{collectrice} = 860\ m^2
+$$
+
+sont exposés au Soleil à un instant donné.
+
+Avec une constante solaire moyenne de :
+
+$$
+1360\ W/m^2
+$$
+
+la puissance incidente atteint :
+
+$$
+P_{solaire} = 1\,169\,600\ W
+$$
+
+Le collecteur est divisé en six secteurs longitudinaux synchronisés avec la rotation de type *Barbecue Roll* du véhicule.
+
+Chaque secteur alterne entre :
+
+* mode générateur thermique exposé au Soleil ;
+* mode condenseur dans l'ombre.
+
+Le fluide de travail retenu est l'azote liquide.
+
+---
+
+# Production d'énergie
+
+La conversion énergétique repose sur quatre moteurs linéaires à piston libre double effet.
+
+Contrairement à un moteur Stirling classique :
+
+* aucun vilebrequin n'est utilisé ;
+* l'électricité est produite directement par induction magnétique ;
+* les mouvements aller et retour produisent tous deux de l'énergie.
+
+Les moteurs sont installés par paires opposées afin d'annuler totalement les vibrations transmises à la structure.
+
+Avec un rendement conservatif de :
+
+$$
+22\%
+$$
+
+la puissance électrique brute obtenue atteint :
+
+$$
+257\ kW
+$$
+
+Après alimentation :
+
+* des cryorefroidisseurs ;
+* des systèmes auxiliaires ;
+* des pertes diverses ;
+
+le surplus électrique disponible reste compris entre :
+
+$$
++89\ kW
+$$
+
+et
+
+$$
++201\ kW
+$$
+
+selon le scénario étudié.
+
+---
+
+# Objectifs
+
+Les principaux objectifs de cette étude sont :
+
+1. Vérifier la faisabilité thermodynamique d'un système ZBO intégral pour LOX et LCH4.
+2. Évaluer le rapport puissance/masse de l'architecture proposée.
+3. Démontrer la suppression complète des vibrations.
+4. Étudier la gestion passive des fluides en microgravité.
+5. Quantifier les capacités de recharge énergétique du véhicule.
+
+---
+
+# Impact potentiel
+
+Si ce concept est validé, il pourrait transformer la gestion des ergols cryogéniques pour :
+
+* les missions Artemis ;
+* les dépôts orbitaux de carburant ;
+* les véhicules interplanétaires de grande capacité ;
+* les infrastructures lunaires permanentes.
+
+L'élimination du boil-off permettrait :
+
+* d'augmenter fortement la durée de stockage ;
+* de réduire les marges d'ergols nécessaires ;
+* d'améliorer la sécurité des missions ;
+* de fournir une source électrique importante sans panneaux solaires déployables supplémentaires.
+
+---
+
+# Opportunités industrielles
+
+Les principaux acteurs potentiellement concernés sont :
+
+* SpaceX ;
+* Blue Origin ;
+* ArianeGroup ;
+* Airbus Defence and Space ;
+* Thales Alenia Space ;
+* futurs opérateurs de dépôts orbitaux cryogéniques.
+
+À ce jour, aucune architecture connue ne combine simultanément :
+
+* collecte thermique par la structure du véhicule ;
+* génération électrique par moteurs linéaires à piston libre ;
+* gestion capillaire passive des fluides ;
+
+au sein d'un système intégré d'environ 350 kg.
+
+---
+
+# Références
+
+1. NASA & DOE — Advanced Stirling Radioisotope Generator (ASRG).
+2. Sunpower Inc. — Free-Piston Stirling Engine Configurations for Space Power Applications.
+3. NASA Glenn Research Center — Active Zero Boil-Off Architecture Assessment.
+4. ESA Space Transportation Roadmaps.
+5. SpaceX Starship User Guide.
+6. National Research Council — Capillary Propellant Management Devices.
+7. Cryogenic Material Properties Database.
+
+---
+
+# Présentation synthétique
+
+> Ce projet propose un système actif permettant d'empêcher totalement l'évaporation des ergols cryogéniques lors des missions spatiales de longue durée.
+>
+> En utilisant directement la chaleur solaire comme source d'énergie, l'architecture maintient les réservoirs cryogéniques à leur température de stockage tout en produisant un surplus électrique significatif pour le véhicule spatial.
+
+---
+
+# Contenu du projet
+
+Le projet repose sur l'utilisation des surfaces externes des réservoirs cryogéniques du Starship HLS comme collecteurs thermiques intégrés. L'énergie solaire captée alimente quatre moteurs linéaires à piston libre fonctionnant avec de l'azote liquide. L'électricité produite permet de faire fonctionner des cryorefroidisseurs assurant un stockage sans perte du méthane liquide et de l'oxygène liquide sur de longues durées. L'ensemble du système est conçu pour limiter la masse embarquée, supprimer les vibrations et fournir simultanément une réserve énergétique exploitable pour les systèmes de bord.
